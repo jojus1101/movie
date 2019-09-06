@@ -14,7 +14,7 @@ public class MovieDTO {
     public MovieDTO() {
     }
     
-    private Long id;
+    private int id;
     private int year;
     private String name;
 
@@ -24,11 +24,11 @@ public class MovieDTO {
         this.name = movie.getName();
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

@@ -19,7 +19,7 @@ public class Movie implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
     private int year;
     private String name;
     private String[] actors;
@@ -33,11 +33,11 @@ public class Movie implements Serializable {
     public Movie() {
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

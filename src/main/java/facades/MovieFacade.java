@@ -48,15 +48,26 @@ public class MovieFacade {
         }
 
     }
-
+    
     public List<Movie> getAllMovies() {
-        EntityManager em = emf.createEntityManager();
-        return em.createNamedQuery("Movie.getAll").getResultList();
+       EntityManager em = emf.createEntityManager();
+        try{
+            TypedQuery<Movie> query = 
+                       em.createQuery("SELECT m FROM Movie m",Movie.class);
+            return query.getResultList();
+        }finally {
+            em.close();
+        }
     }
-
-    public Movie getMovieById(long id) {
+    
+    public Movie getMovieById(int id) {
         EntityManager em = emf.createEntityManager();
-        return em.find(Movie.class, id);
+        try{
+            Movie movie = em.find(Movie.class,id);
+            return movie;
+        }finally {
+            em.close();
+        }
     }
     public List<Movie> getMoviesByName(String name) {
         EntityManager em = emf.createEntityManager();

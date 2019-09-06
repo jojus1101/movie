@@ -40,10 +40,16 @@ public class MovieResource {
     @Produces({MediaType.APPLICATION_JSON})
     public String getMovieCount() {
         long count = FACADE.getMovieCount();
-        //System.out.println("--------------->"+count);
-        return "{\"count\":" + count + "}";  //Done manually so no need for a DTO
+        return "{\"count\":" + count + "}";
     }
-
+    @Path("all")
+    @GET
+    @Produces({MediaType.APPLICATION_JSON})
+    public String getAll() {
+    List<Movie> movies = FACADE.getAllMovies();
+        System.out.println(movies);
+        return GSON.toJson(movies);
+    }
     @Path("populate")
     @GET
     @Produces({MediaType.APPLICATION_JSON})
@@ -51,14 +57,14 @@ public class MovieResource {
         FACADE.populateMovies();
         return "{\"msg\":\"done!\"}";
     }
-
-    @PUT
-    @Path("/{id}")
-    @Consumes({MediaType.APPLICATION_JSON})
-    public String MovieByID(Movie entity, @PathParam("id") int id) {
-        Movie movie = FACADE.getMovieById(id);
-        return GSON.toJson(movie);
-    }
+//
+//    @PUT
+//    @Path("/{id}")
+//    @Consumes({MediaType.APPLICATION_JSON})
+//    public String MovieByID(Movie entity, @PathParam("id") int id) {
+//        Movie emp = FACADE.getMovieById(id);
+//        return GSON.toJson(emp);
+//    }
 
     @Path("/name/{name}")
     @GET
